@@ -1,0 +1,141 @@
+[
+    {
+        "id": "c6af2b852a417e76",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "41eab0697ad6bb68",
+        "type": "inject",
+        "z": "c6af2b852a417e76",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "*/5 21-23 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 350,
+        "y": 200,
+        "wires": [
+            [
+                "c02fe46fb7b66a98"
+            ]
+        ]
+    },
+    {
+        "id": "c02fe46fb7b66a98",
+        "type": "http request",
+        "z": "c6af2b852a417e76",
+        "name": "GET REPORT",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://192.168.0.196/report",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 540,
+        "y": 200,
+        "wires": [
+            [
+                "2d649e16871ac738",
+                "61d2395ecfa4641a"
+            ]
+        ]
+    },
+    {
+        "id": "69a57ee43940a624",
+        "type": "debug",
+        "z": "c6af2b852a417e76",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1080,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "2d649e16871ac738",
+        "type": "function",
+        "z": "c6af2b852a417e76",
+        "name": "check power",
+        "func": "if(msg.payload.power < 100){\n    return msg;\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 200,
+        "wires": [
+            [
+                "b1f9b5df64cbd46a"
+            ]
+        ]
+    },
+    {
+        "id": "b1f9b5df64cbd46a",
+        "type": "http request",
+        "z": "c6af2b852a417e76",
+        "name": "TURN OFF",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://192.168.0.196/relay?state=0",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 890,
+        "y": 200,
+        "wires": [
+            [
+                "69a57ee43940a624"
+            ]
+        ]
+    },
+    {
+        "id": "61d2395ecfa4641a",
+        "type": "debug",
+        "z": "c6af2b852a417e76",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 280,
+        "wires": []
+    }
+]
