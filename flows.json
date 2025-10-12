@@ -8,9 +8,96 @@
         "env": []
     },
     {
+        "id": "51e7d3b10f18b555",
+        "type": "group",
+        "z": "c6af2b852a417e76",
+        "name": "turn off",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "41eab0697ad6bb68",
+            "c02fe46fb7b66a98",
+            "69a57ee43940a624",
+            "2d649e16871ac738",
+            "b1f9b5df64cbd46a",
+            "61d2395ecfa4641a",
+            "168fa4951bcb0d21"
+        ],
+        "x": 194,
+        "y": 99,
+        "w": 952,
+        "h": 142
+    },
+    {
+        "id": "2b045583c07a4680",
+        "type": "group",
+        "z": "c6af2b852a417e76",
+        "name": "turn on",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "b33b6197e8172afa",
+            "08ac74cee735f6cd",
+            "8ff61dec49dd393b",
+            "7b16888f2458f853",
+            "cc21feb8b89b1425",
+            "23116c068bda183c",
+            "5f808fd08cde76b4",
+            "49488bb80bb880f5",
+            "aa7d807f1ddd4a05"
+        ],
+        "x": 194,
+        "y": 279,
+        "w": 692,
+        "h": 322
+    },
+    {
+        "id": "0142dfbb2ea23f6d",
+        "type": "group",
+        "z": "c6af2b852a417e76",
+        "name": "turn on HOLIDAY",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "9342195a570e6592",
+            "79ea53dbdf261e67",
+            "128d2197363a5e7d",
+            "5436fca8c9aca560",
+            "1625bcacc8fa51f1"
+        ],
+        "x": 194,
+        "y": 659,
+        "w": 1032,
+        "h": 82
+    },
+    {
+        "id": "ebb8104022b6faaa",
+        "type": "group",
+        "z": "c6af2b852a417e76",
+        "name": "turn on HOLIDAY",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "73adb1d8586cf54f",
+            "2e4d616b9cf5c697",
+            "23d82acee560e063",
+            "4016301f9c46176f",
+            "cd4ed82fbcc2cda4"
+        ],
+        "x": 194,
+        "y": 759,
+        "w": 1032,
+        "h": 82
+    },
+    {
         "id": "41eab0697ad6bb68",
         "type": "inject",
         "z": "c6af2b852a417e76",
+        "g": "51e7d3b10f18b555",
         "name": "",
         "props": [
             {
@@ -22,14 +109,14 @@
             }
         ],
         "repeat": "",
-        "crontab": "*/5 21-23 * * *",
+        "crontab": "*/5 22-23 * * *",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 350,
-        "y": 200,
+        "x": 310,
+        "y": 140,
         "wires": [
             [
                 "c02fe46fb7b66a98"
@@ -40,6 +127,7 @@
         "id": "c02fe46fb7b66a98",
         "type": "http request",
         "z": "c6af2b852a417e76",
+        "g": "51e7d3b10f18b555",
         "name": "GET REPORT",
         "method": "GET",
         "ret": "obj",
@@ -52,8 +140,8 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 540,
-        "y": 200,
+        "x": 500,
+        "y": 140,
         "wires": [
             [
                 "2d649e16871ac738",
@@ -65,6 +153,7 @@
         "id": "69a57ee43940a624",
         "type": "debug",
         "z": "c6af2b852a417e76",
+        "g": "51e7d3b10f18b555",
         "name": "debug 1",
         "active": true,
         "tosidebar": true,
@@ -74,24 +163,25 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1080,
-        "y": 200,
+        "x": 1040,
+        "y": 140,
         "wires": []
     },
     {
         "id": "2d649e16871ac738",
         "type": "function",
         "z": "c6af2b852a417e76",
+        "g": "51e7d3b10f18b555",
         "name": "check power",
-        "func": "if(msg.payload.power < 100){\n    return msg;\n}\n",
+        "func": "if(msg.payload.power < 90){\n    return msg;\n}\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 710,
-        "y": 200,
+        "x": 670,
+        "y": 140,
         "wires": [
             [
                 "b1f9b5df64cbd46a"
@@ -102,9 +192,10 @@
         "id": "b1f9b5df64cbd46a",
         "type": "http request",
         "z": "c6af2b852a417e76",
+        "g": "51e7d3b10f18b555",
         "name": "TURN OFF",
         "method": "GET",
-        "ret": "obj",
+        "ret": "txt",
         "paytoqs": "ignore",
         "url": "http://192.168.0.196/relay?state=0",
         "tls": "",
@@ -114,8 +205,8 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 890,
-        "y": 200,
+        "x": 870,
+        "y": 140,
         "wires": [
             [
                 "69a57ee43940a624"
@@ -126,6 +217,7 @@
         "id": "61d2395ecfa4641a",
         "type": "debug",
         "z": "c6af2b852a417e76",
+        "g": "51e7d3b10f18b555",
         "name": "debug 2",
         "active": true,
         "tosidebar": true,
@@ -134,8 +226,515 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 710,
-        "y": 280,
+        "x": 680,
+        "y": 200,
         "wires": []
+    },
+    {
+        "id": "168fa4951bcb0d21",
+        "type": "inject",
+        "z": "c6af2b852a417e76",
+        "g": "51e7d3b10f18b555",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "*/5 0-3 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 310,
+        "y": 200,
+        "wires": [
+            [
+                "c02fe46fb7b66a98"
+            ]
+        ]
+    },
+    {
+        "id": "b33b6197e8172afa",
+        "type": "inject",
+        "z": "c6af2b852a417e76",
+        "g": "2b045583c07a4680",
+        "name": "MONDAY",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "45 06 * * 1",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 310,
+        "y": 320,
+        "wires": [
+            [
+                "8ff61dec49dd393b"
+            ]
+        ]
+    },
+    {
+        "id": "08ac74cee735f6cd",
+        "type": "debug",
+        "z": "c6af2b852a417e76",
+        "g": "2b045583c07a4680",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "8ff61dec49dd393b",
+        "type": "http request",
+        "z": "c6af2b852a417e76",
+        "g": "2b045583c07a4680",
+        "name": "TURN ON",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://192.168.0.196/relay?state=1",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 580,
+        "y": 420,
+        "wires": [
+            [
+                "08ac74cee735f6cd"
+            ]
+        ]
+    },
+    {
+        "id": "7b16888f2458f853",
+        "type": "inject",
+        "z": "c6af2b852a417e76",
+        "g": "2b045583c07a4680",
+        "name": "TUESDAY",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "55 06 * * 2",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 310,
+        "y": 360,
+        "wires": [
+            [
+                "8ff61dec49dd393b"
+            ]
+        ]
+    },
+    {
+        "id": "cc21feb8b89b1425",
+        "type": "inject",
+        "z": "c6af2b852a417e76",
+        "g": "2b045583c07a4680",
+        "name": "WEDNESDAY",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "55 06 * * 3",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 320,
+        "y": 400,
+        "wires": [
+            [
+                "8ff61dec49dd393b"
+            ]
+        ]
+    },
+    {
+        "id": "23116c068bda183c",
+        "type": "inject",
+        "z": "c6af2b852a417e76",
+        "g": "2b045583c07a4680",
+        "name": "THURSDAY",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "40 07 * * 4",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 310,
+        "y": 440,
+        "wires": [
+            [
+                "8ff61dec49dd393b"
+            ]
+        ]
+    },
+    {
+        "id": "5f808fd08cde76b4",
+        "type": "inject",
+        "z": "c6af2b852a417e76",
+        "g": "2b045583c07a4680",
+        "name": "FRIDAY",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "50 06 * * 5",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 300,
+        "y": 480,
+        "wires": [
+            [
+                "8ff61dec49dd393b"
+            ]
+        ]
+    },
+    {
+        "id": "49488bb80bb880f5",
+        "type": "inject",
+        "z": "c6af2b852a417e76",
+        "g": "2b045583c07a4680",
+        "name": "SATURDAY",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 08 * * 6",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 310,
+        "y": 520,
+        "wires": [
+            [
+                "8ff61dec49dd393b"
+            ]
+        ]
+    },
+    {
+        "id": "aa7d807f1ddd4a05",
+        "type": "inject",
+        "z": "c6af2b852a417e76",
+        "g": "2b045583c07a4680",
+        "name": "SUNDAY",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 08 * * 0",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 300,
+        "y": 560,
+        "wires": [
+            [
+                "8ff61dec49dd393b"
+            ]
+        ]
+    },
+    {
+        "id": "9342195a570e6592",
+        "type": "inject",
+        "z": "c6af2b852a417e76",
+        "d": true,
+        "g": "0142dfbb2ea23f6d",
+        "name": "Daily 6:00 trigger",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 06 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 330,
+        "y": 700,
+        "wires": [
+            [
+                "79ea53dbdf261e67"
+            ]
+        ]
+    },
+    {
+        "id": "79ea53dbdf261e67",
+        "type": "function",
+        "z": "c6af2b852a417e76",
+        "g": "0142dfbb2ea23f6d",
+        "name": "Random time 6-8am",
+        "func": "let randomMinutes = Math.floor(Math.random() * 120);\nlet now = new Date();\nlet triggerTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 6, 0, 0);\ntriggerTime.setMinutes(triggerTime.getMinutes() + randomMinutes);\n\nmsg.delay = triggerTime.getTime() - now.getTime();\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 530,
+        "y": 700,
+        "wires": [
+            [
+                "128d2197363a5e7d"
+            ]
+        ]
+    },
+    {
+        "id": "128d2197363a5e7d",
+        "type": "delay",
+        "z": "c6af2b852a417e76",
+        "g": "0142dfbb2ea23f6d",
+        "name": "Wait until random time",
+        "pauseType": "delay",
+        "timeout": "0",
+        "timeoutUnits": "ms",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "0",
+        "randomUnits": "ms",
+        "drop": false,
+        "outputs": 1,
+        "x": 750,
+        "y": 700,
+        "wires": [
+            [
+                "1625bcacc8fa51f1"
+            ]
+        ]
+    },
+    {
+        "id": "5436fca8c9aca560",
+        "type": "debug",
+        "z": "c6af2b852a417e76",
+        "g": "0142dfbb2ea23f6d",
+        "name": "Execute code",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1100,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "1625bcacc8fa51f1",
+        "type": "http request",
+        "z": "c6af2b852a417e76",
+        "g": "0142dfbb2ea23f6d",
+        "name": "TURN ON",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://192.168.0.196/relay?state=1",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 940,
+        "y": 700,
+        "wires": [
+            [
+                "5436fca8c9aca560"
+            ]
+        ]
+    },
+    {
+        "id": "73adb1d8586cf54f",
+        "type": "inject",
+        "z": "c6af2b852a417e76",
+        "d": true,
+        "g": "ebb8104022b6faaa",
+        "name": "Daily 6:00 trigger",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 18 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 330,
+        "y": 800,
+        "wires": [
+            [
+                "2e4d616b9cf5c697"
+            ]
+        ]
+    },
+    {
+        "id": "2e4d616b9cf5c697",
+        "type": "function",
+        "z": "c6af2b852a417e76",
+        "g": "ebb8104022b6faaa",
+        "name": "Random time 6-8pm",
+        "func": "let randomMinutes = Math.floor(Math.random() * 120);\nlet now = new Date();\nlet triggerTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 6, 0, 0);\ntriggerTime.setMinutes(triggerTime.getMinutes() + randomMinutes);\n\nmsg.delay = triggerTime.getTime() - now.getTime();\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 800,
+        "wires": [
+            [
+                "23d82acee560e063"
+            ]
+        ]
+    },
+    {
+        "id": "23d82acee560e063",
+        "type": "delay",
+        "z": "c6af2b852a417e76",
+        "g": "ebb8104022b6faaa",
+        "name": "Wait until random time",
+        "pauseType": "delay",
+        "timeout": "0",
+        "timeoutUnits": "ms",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "0",
+        "randomUnits": "ms",
+        "drop": false,
+        "outputs": 1,
+        "x": 750,
+        "y": 800,
+        "wires": [
+            [
+                "cd4ed82fbcc2cda4"
+            ]
+        ]
+    },
+    {
+        "id": "4016301f9c46176f",
+        "type": "debug",
+        "z": "c6af2b852a417e76",
+        "g": "ebb8104022b6faaa",
+        "name": "Execute code",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1100,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "cd4ed82fbcc2cda4",
+        "type": "http request",
+        "z": "c6af2b852a417e76",
+        "g": "ebb8104022b6faaa",
+        "name": "TURN OFF",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://192.168.0.196/relay?state=0",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 950,
+        "y": 800,
+        "wires": [
+            [
+                "4016301f9c46176f"
+            ]
+        ]
     }
 ]
