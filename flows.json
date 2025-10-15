@@ -54,42 +54,42 @@
         "h": 322
     },
     {
-        "id": "0142dfbb2ea23f6d",
+        "id": "holiday_morning",
         "type": "group",
         "z": "c6af2b852a417e76",
-        "name": "turn on HOLIDAY",
+        "name": "Holiday Morning 6-8am",
         "style": {
             "label": true
         },
         "nodes": [
-            "9342195a570e6592",
-            "79ea53dbdf261e67",
-            "128d2197363a5e7d",
-            "5436fca8c9aca560",
-            "1625bcacc8fa51f1"
+            "inject_morning",
+            "function_morning",
+            "http_morning",
+            "debug_morning",
+            "c7229da81fdd17d5"
         ],
-        "x": 194,
-        "y": 659,
-        "w": 1032,
+        "x": 174,
+        "y": 799,
+        "w": 1052,
         "h": 82
     },
     {
-        "id": "ebb8104022b6faaa",
+        "id": "holiday_evening",
         "type": "group",
         "z": "c6af2b852a417e76",
-        "name": "turn on HOLIDAY",
+        "name": "Holiday Evening 18-20pm",
         "style": {
             "label": true
         },
         "nodes": [
-            "73adb1d8586cf54f",
-            "2e4d616b9cf5c697",
-            "23d82acee560e063",
-            "4016301f9c46176f",
-            "cd4ed82fbcc2cda4"
+            "inject_evening",
+            "function_evening",
+            "http_evening",
+            "debug_evening",
+            "752f414d15c85e6a"
         ],
-        "x": 194,
-        "y": 759,
+        "x": 174,
+        "y": 999,
         "w": 1052,
         "h": 82
     },
@@ -514,11 +514,11 @@
         ]
     },
     {
-        "id": "9342195a570e6592",
+        "id": "inject_morning",
         "type": "inject",
         "z": "c6af2b852a417e76",
         "d": true,
-        "g": "0142dfbb2ea23f6d",
+        "g": "holiday_morning",
         "name": "Daily 6:00 trigger",
         "props": [
             {
@@ -528,108 +528,70 @@
         "repeat": "",
         "crontab": "00 06 * * *",
         "once": false,
-        "onceDelay": 0.1,
+        "onceDelay": "",
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 330,
-        "y": 700,
+        "x": 310,
+        "y": 840,
         "wires": [
             [
-                "79ea53dbdf261e67"
+                "function_morning"
             ]
         ]
     },
     {
-        "id": "79ea53dbdf261e67",
+        "id": "function_morning",
         "type": "function",
         "z": "c6af2b852a417e76",
-        "g": "0142dfbb2ea23f6d",
-        "name": "Random time 6-8am",
-        "func": "let randomMinutes = Math.floor(Math.random() * 120);\nlet now = new Date();\nlet triggerTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 6, 0, 0);\ntriggerTime.setMinutes(triggerTime.getMinutes() + randomMinutes);\n\nmsg.delay = triggerTime.getTime() - now.getTime();\nreturn msg;",
+        "g": "holiday_morning",
+        "name": "Random ON/OFF 6-8am",
+        "func": "// Random ON time between 6:00-8:00\nlet now = new Date();\nlet onMinutes = Math.floor(Math.random() * 120);\nlet onTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 6, 0, 0);\nonTime.setMinutes(onTime.getMinutes() + onMinutes);\n\n// Random OFF duration 1-3 hours (60-180 min)\nlet offMinutes = 60 + Math.floor(Math.random() * 120);\nlet offTime = new Date(onTime.getTime() + offMinutes * 60000);\n\n// Send ON message\nlet msgOn = { delay: onTime.getTime() - now.getTime(), url: 'http://192.168.0.196/relay?state=1' };\nnode.send(msgOn);\n\n// Send OFF message\nlet msgOff = { delay: offTime.getTime() - now.getTime(), url: 'http://192.168.0.196/relay?state=0' };\nnode.send(msgOff);\n\nreturn null;",
         "outputs": 1,
-        "noerr": 0,
         "x": 530,
-        "y": 700,
+        "y": 840,
         "wires": [
             [
-                "128d2197363a5e7d"
+                "c7229da81fdd17d5"
             ]
         ]
     },
     {
-        "id": "128d2197363a5e7d",
-        "type": "delay",
+        "id": "http_morning",
+        "type": "http request",
         "z": "c6af2b852a417e76",
-        "g": "0142dfbb2ea23f6d",
-        "name": "Wait until random time",
-        "pauseType": "delay",
-        "timeout": "0",
-        "timeoutUnits": "ms",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "0",
-        "randomLast": "0",
-        "randomUnits": "ms",
-        "drop": false,
-        "outputs": 1,
-        "x": 750,
-        "y": 700,
+        "g": "holiday_morning",
+        "name": "Send ON/OFF",
+        "method": "GET",
+        "ret": "txt",
+        "url": "",
+        "x": 980,
+        "y": 840,
         "wires": [
             [
-                "1625bcacc8fa51f1"
+                "debug_morning"
             ]
         ]
     },
     {
-        "id": "5436fca8c9aca560",
+        "id": "debug_morning",
         "type": "debug",
         "z": "c6af2b852a417e76",
-        "g": "0142dfbb2ea23f6d",
-        "name": "Execute code",
+        "g": "holiday_morning",
+        "name": "Debug",
         "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
         "complete": "true",
-        "targetType": "full",
-        "x": 1100,
-        "y": 700,
+        "x": 1130,
+        "y": 840,
         "wires": []
     },
     {
-        "id": "1625bcacc8fa51f1",
-        "type": "http request",
-        "z": "c6af2b852a417e76",
-        "g": "0142dfbb2ea23f6d",
-        "name": "TURN ON",
-        "method": "GET",
-        "ret": "txt",
-        "paytoqs": "ignore",
-        "url": "http://192.168.0.196/relay?state=1",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": false,
-        "headers": [],
-        "x": 940,
-        "y": 700,
-        "wires": [
-            [
-                "5436fca8c9aca560"
-            ]
-        ]
-    },
-    {
-        "id": "73adb1d8586cf54f",
+        "id": "inject_evening",
         "type": "inject",
         "z": "c6af2b852a417e76",
         "d": true,
-        "g": "ebb8104022b6faaa",
-        "name": "Daily 6:00 trigger",
+        "g": "holiday_evening",
+        "name": "Daily 18:00 trigger",
         "props": [
             {
                 "p": "payload"
@@ -638,44 +600,68 @@
         "repeat": "",
         "crontab": "00 18 * * *",
         "once": false,
-        "onceDelay": 0.1,
+        "onceDelay": "",
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 330,
-        "y": 800,
+        "x": 310,
+        "y": 1040,
         "wires": [
             [
-                "2e4d616b9cf5c697"
+                "function_evening"
             ]
         ]
     },
     {
-        "id": "2e4d616b9cf5c697",
+        "id": "function_evening",
         "type": "function",
         "z": "c6af2b852a417e76",
-        "g": "ebb8104022b6faaa",
-        "name": "Random time 6-8pm",
-        "func": "let randomMinutes = Math.floor(Math.random() * 120);\nlet now = new Date();\nlet triggerTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 6, 0, 0);\ntriggerTime.setMinutes(triggerTime.getMinutes() + randomMinutes);\n\nmsg.delay = triggerTime.getTime() - now.getTime();\nreturn msg;",
+        "g": "holiday_evening",
+        "name": "Random ON/OFF 18-20",
+        "func": "// Random ON time between 18:00-20:00\nlet now = new Date();\nlet onMinutes = Math.floor(Math.random() * 120);\nlet onTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 18, 0, 0);\nonTime.setMinutes(onTime.getMinutes() + onMinutes);\n\n// Random OFF duration 1-3 hours (60-180 min)\nlet offMinutes = 60 + Math.floor(Math.random() * 120);\nlet offTime = new Date(onTime.getTime() + offMinutes * 60000);\n\n// Send ON message\nlet msgOn = { delay: onTime.getTime() - now.getTime(), url: 'http://192.168.0.196/relay?state=1' };\nnode.send(msgOn);\n\n// Send OFF message\nlet msgOff = { delay: offTime.getTime() - now.getTime(), url: 'http://192.168.0.196/relay?state=0' };\nnode.send(msgOff);\n\nreturn null;",
         "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
         "x": 530,
-        "y": 800,
+        "y": 1040,
         "wires": [
             [
-                "23d82acee560e063"
+                "752f414d15c85e6a"
             ]
         ]
     },
     {
-        "id": "23d82acee560e063",
+        "id": "http_evening",
+        "type": "http request",
+        "z": "c6af2b852a417e76",
+        "g": "holiday_evening",
+        "name": "Send ON/OFF",
+        "method": "GET",
+        "ret": "txt",
+        "url": "",
+        "x": 960,
+        "y": 1040,
+        "wires": [
+            [
+                "debug_evening"
+            ]
+        ]
+    },
+    {
+        "id": "debug_evening",
+        "type": "debug",
+        "z": "c6af2b852a417e76",
+        "g": "holiday_evening",
+        "name": "Debug",
+        "active": true,
+        "complete": "true",
+        "x": 1130,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "c7229da81fdd17d5",
         "type": "delay",
         "z": "c6af2b852a417e76",
-        "g": "ebb8104022b6faaa",
+        "g": "holiday_morning",
         "name": "Wait until random time",
         "pauseType": "delay",
         "timeout": "0",
@@ -688,52 +674,36 @@
         "randomUnits": "ms",
         "drop": false,
         "outputs": 1,
-        "x": 750,
-        "y": 800,
+        "x": 780,
+        "y": 840,
         "wires": [
             [
-                "cd4ed82fbcc2cda4"
+                "http_morning"
             ]
         ]
     },
     {
-        "id": "4016301f9c46176f",
-        "type": "debug",
+        "id": "752f414d15c85e6a",
+        "type": "delay",
         "z": "c6af2b852a417e76",
-        "g": "ebb8104022b6faaa",
-        "name": "Execute code",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 1120,
-        "y": 800,
-        "wires": []
-    },
-    {
-        "id": "cd4ed82fbcc2cda4",
-        "type": "http request",
-        "z": "c6af2b852a417e76",
-        "g": "ebb8104022b6faaa",
-        "name": "TURN OFF",
-        "method": "GET",
-        "ret": "txt",
-        "paytoqs": "ignore",
-        "url": "http://192.168.0.196/relay?state=0",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": false,
-        "headers": [],
-        "x": 950,
-        "y": 800,
+        "g": "holiday_evening",
+        "name": "Wait until random time",
+        "pauseType": "delay",
+        "timeout": "0",
+        "timeoutUnits": "ms",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "0",
+        "randomUnits": "ms",
+        "drop": false,
+        "outputs": 1,
+        "x": 760,
+        "y": 1040,
         "wires": [
             [
-                "4016301f9c46176f"
+                "http_evening"
             ]
         ]
     }
