@@ -90,7 +90,7 @@
         ],
         "x": 194,
         "y": 759,
-        "w": 1032,
+        "w": 1052,
         "h": 82
     },
     {
@@ -173,7 +173,7 @@
         "z": "c6af2b852a417e76",
         "g": "51e7d3b10f18b555",
         "name": "check power",
-        "func": "if(msg.payload.power < 90){\n    return msg;\n}\n",
+        "func": "if(msg.payload.power < 60){\n    return msg;\n}\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -708,7 +708,7 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 1100,
+        "x": 1120,
         "y": 800,
         "wires": []
     },
