@@ -8,6 +8,13 @@
         "env": []
     },
     {
+        "id": "tab_mystrom_backend",
+        "type": "tab",
+        "label": "MyStrom Backend",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "51e7d3b10f18b555",
         "type": "group",
         "z": "c6af2b852a417e76",
@@ -94,9 +101,136 @@
         "h": 82
     },
     {
+        "id": "789363e2f2177c0e",
+        "type": "group",
+        "z": "tab_mystrom_backend",
+        "name": "Holiday Morning 6-8am",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "9a0407acdbdd58fb",
+            "e27cea611a4ceb83",
+            "delay_morning",
+            "22137f19adf9c78a",
+            "ae3a8cae7676dee5"
+        ],
+        "x": 174,
+        "y": 739,
+        "w": 1152,
+        "h": 82
+    },
+    {
+        "id": "c898844e4704ba4a",
+        "type": "group",
+        "z": "tab_mystrom_backend",
+        "name": "Holiday Evening 18-20pm",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "0ef25c32a76607c4",
+            "8505ed2e8db0458e",
+            "delay_evening",
+            "f544cfe9cacd6182",
+            "b78bf5b566e150d1"
+        ],
+        "x": 174,
+        "y": 889,
+        "w": 1152,
+        "h": 82
+    },
+    {
+        "id": "ff_ui_base",
+        "type": "ui-base",
+        "name": "FlowFuse Dashboard",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": true,
+        "showPathInSidebar": false,
+        "headerContent": "none",
+        "navigationStyle": "none",
+        "titleBarStyle": "default",
+        "showReconnectNotification": false,
+        "notificationDisplayTime": 5,
+        "showDisconnectNotification": false,
+        "allowInstall": true
+    },
+    {
+        "id": "3a552994cf806bed",
+        "type": "ui-theme",
+        "name": "Theme Name",
+        "colors": {
+            "surface": "#1f2937",
+            "primary": "#0094ce",
+            "bgPage": "#111827",
+            "groupBg": "#1e293b",
+            "groupOutline": "#374151"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "0px",
+            "groupGap": "0px",
+            "groupBorderRadius": "0px",
+            "widgetGap": "0px"
+        }
+    },
+    {
+        "id": "0d8a8096b2c11f78",
+        "type": "ui-page",
+        "name": "MyStrom FullPage",
+        "ui": "ff_ui_base",
+        "path": "/myStrom",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "3a552994cf806bed",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "12"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "12"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "12"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": "false",
+        "disabled": "false"
+    },
+    {
+        "id": "91c8f0121e83fbc5",
+        "type": "ui-group",
+        "name": "FullWidth Group",
+        "page": "0d8a8096b2c11f78",
+        "width": 12,
+        "height": 0,
+        "order": 1,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
         "id": "41eab0697ad6bb68",
         "type": "inject",
         "z": "c6af2b852a417e76",
+        "d": true,
         "g": "51e7d3b10f18b555",
         "name": "",
         "props": [
@@ -234,6 +368,7 @@
         "id": "168fa4951bcb0d21",
         "type": "inject",
         "z": "c6af2b852a417e76",
+        "d": true,
         "g": "51e7d3b10f18b555",
         "name": "",
         "props": [
@@ -264,6 +399,7 @@
         "id": "b33b6197e8172afa",
         "type": "inject",
         "z": "c6af2b852a417e76",
+        "d": true,
         "g": "2b045583c07a4680",
         "name": "MONDAY",
         "props": [
@@ -337,6 +473,7 @@
         "id": "7b16888f2458f853",
         "type": "inject",
         "z": "c6af2b852a417e76",
+        "d": true,
         "g": "2b045583c07a4680",
         "name": "TUESDAY",
         "props": [
@@ -367,6 +504,7 @@
         "id": "cc21feb8b89b1425",
         "type": "inject",
         "z": "c6af2b852a417e76",
+        "d": true,
         "g": "2b045583c07a4680",
         "name": "WEDNESDAY",
         "props": [
@@ -397,6 +535,7 @@
         "id": "23116c068bda183c",
         "type": "inject",
         "z": "c6af2b852a417e76",
+        "d": true,
         "g": "2b045583c07a4680",
         "name": "THURSDAY",
         "props": [
@@ -427,6 +566,7 @@
         "id": "5f808fd08cde76b4",
         "type": "inject",
         "z": "c6af2b852a417e76",
+        "d": true,
         "g": "2b045583c07a4680",
         "name": "FRIDAY",
         "props": [
@@ -457,6 +597,7 @@
         "id": "49488bb80bb880f5",
         "type": "inject",
         "z": "c6af2b852a417e76",
+        "d": true,
         "g": "2b045583c07a4680",
         "name": "SATURDAY",
         "props": [
@@ -487,6 +628,7 @@
         "id": "aa7d807f1ddd4a05",
         "type": "inject",
         "z": "c6af2b852a417e76",
+        "d": true,
         "g": "2b045583c07a4680",
         "name": "SUNDAY",
         "props": [
@@ -704,6 +846,571 @@
         "wires": [
             [
                 "http_evening"
+            ]
+        ]
+    },
+    {
+        "id": "0586653387de84c9",
+        "type": "http in",
+        "z": "tab_mystrom_backend",
+        "name": "Config API",
+        "url": "/api/config",
+        "method": "post",
+        "upload": false,
+        "x": 310,
+        "y": 80,
+        "wires": [
+            [
+                "107e74de50eac74a"
+            ]
+        ]
+    },
+    {
+        "id": "107e74de50eac74a",
+        "type": "function",
+        "z": "tab_mystrom_backend",
+        "name": "Handle Config",
+        "func": "// msg.payload = { ip, auto, holiday, limit, offTime, days, action }\nconst ip = msg.payload.ip;\nif (!ip) return [null];\n\nlet all = global.get(\"devices\") || {};\n\nif (!all[ip]) {\n    all[ip] = {\n        auto: true,\n        holiday: false,\n        limit: 60,\n        offTime: \"22:00\",\n        days: [\n            { name: 'Monday', time: '06:45' },\n            { name: 'Tuesday', time: '06:55' },\n            { name: 'Wednesday', time: '06:55' },\n            { name: 'Thursday', time: '07:40' },\n            { name: 'Friday', time: '06:50' },\n            { name: 'Saturday', time: '08:00' },\n            { name: 'Sunday', time: '08:00' }\n        ]\n    };\n}\n\nif (msg.payload.auto !== undefined) all[ip].auto = msg.payload.auto;\nif (msg.payload.holiday !== undefined) all[ip].holiday = msg.payload.holiday;\nif (msg.payload.limit !== undefined) all[ip].limit = Number(msg.payload.limit);\nif (msg.payload.offTime !== undefined) all[ip].offTime = msg.payload.offTime;\nif (msg.payload.days !== undefined) all[ip].days = msg.payload.days;\n\nglobal.set(\"devices\", all);\nmsg.payload = all[ip];\nreturn msg;",
+        "outputs": 1,
+        "x": 550,
+        "y": 80,
+        "wires": [
+            [
+                "56a56cd6467a2ebb"
+            ]
+        ]
+    },
+    {
+        "id": "56a56cd6467a2ebb",
+        "type": "http response",
+        "z": "tab_mystrom_backend",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 770,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "3a9c6218e9b08eee",
+        "type": "http in",
+        "z": "tab_mystrom_backend",
+        "name": "Delete Device API",
+        "url": "/api/config/delete",
+        "method": "post",
+        "upload": false,
+        "x": 340,
+        "y": 160,
+        "wires": [
+            [
+                "fn_cfg_delete"
+            ]
+        ]
+    },
+    {
+        "id": "fn_cfg_delete",
+        "type": "function",
+        "z": "tab_mystrom_backend",
+        "name": "Delete Device",
+        "func": "// msg.payload = { ip }\nconst ip = msg.payload.ip;\nif(!ip) return [null];\nlet all = global.get(\"devices\") || {};\nif(all[ip]){\n    delete all[ip];\n    global.set(\"devices\", all);\n    msg.payload = { success:true, ip: ip };\n} else {\n    msg.payload = { success:false, error: \"IP not found\" };\n}\nreturn msg;",
+        "outputs": 1,
+        "x": 580,
+        "y": 160,
+        "wires": [
+            [
+                "537b5defcfb937c2"
+            ]
+        ]
+    },
+    {
+        "id": "537b5defcfb937c2",
+        "type": "http response",
+        "z": "tab_mystrom_backend",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 760,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "c9cf9505973b8de4",
+        "type": "http in",
+        "z": "tab_mystrom_backend",
+        "name": "Power API",
+        "url": "/api/power",
+        "method": "post",
+        "upload": false,
+        "x": 300,
+        "y": 260,
+        "wires": [
+            [
+                "63f617819a0783a5"
+            ]
+        ]
+    },
+    {
+        "id": "63f617819a0783a5",
+        "type": "function",
+        "z": "tab_mystrom_backend",
+        "name": "Send Power",
+        "func": "const ip = msg.payload.ip;\nconst val = msg.payload.val;\nif(!ip || val===undefined) return null;\n\n// Update global power status\nconst powerStatus = global.get('powerStatus') || {};\npowerStatus[ip] = val;\nglobal.set('powerStatus', powerStatus);\n\nmsg.url = `http://${ip}/relay?state=${val?1:0}`;\nmsg.method='GET';\nreturn msg;",
+        "outputs": 1,
+        "x": 530,
+        "y": 260,
+        "wires": [
+            [
+                "8a425307a383dcf5"
+            ]
+        ]
+    },
+    {
+        "id": "8a425307a383dcf5",
+        "type": "http request",
+        "z": "tab_mystrom_backend",
+        "name": "Send to MyStrom",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 750,
+        "y": 260,
+        "wires": [
+            [
+                "b00363a5c5e21a35"
+            ]
+        ]
+    },
+    {
+        "id": "b00363a5c5e21a35",
+        "type": "http response",
+        "z": "tab_mystrom_backend",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 970,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "b0bde0155e83f900",
+        "type": "http in",
+        "z": "tab_mystrom_backend",
+        "name": "Devices API",
+        "url": "/api/devices",
+        "method": "get",
+        "upload": false,
+        "x": 320,
+        "y": 360,
+        "wires": [
+            [
+                "2561d9798456731f"
+            ]
+        ]
+    },
+    {
+        "id": "2561d9798456731f",
+        "type": "function",
+        "z": "tab_mystrom_backend",
+        "name": "List Devices",
+        "func": "const all = global.get('devices') || {};\nmsg.payload = Object.keys(all);\nreturn msg;",
+        "outputs": 1,
+        "x": 550,
+        "y": 360,
+        "wires": [
+            [
+                "6b6c6b2f5045e806"
+            ]
+        ]
+    },
+    {
+        "id": "6b6c6b2f5045e806",
+        "type": "http response",
+        "z": "tab_mystrom_backend",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 770,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "00a346d8e0994fd5",
+        "type": "http in",
+        "z": "tab_mystrom_backend",
+        "name": "Report API",
+        "url": "/api/report",
+        "method": "get",
+        "upload": false,
+        "x": 320,
+        "y": 460,
+        "wires": [
+            [
+                "0b79255a581d410a"
+            ]
+        ]
+    },
+    {
+        "id": "0b79255a581d410a",
+        "type": "function",
+        "z": "tab_mystrom_backend",
+        "name": "Get Device Report",
+        "func": "const ip = msg.req?.query?.ip;\nconst all = global.get('devices') || {};\nif(ip && all[ip]) msg.payload = all[ip];\nelse msg.payload = all;\nreturn msg;",
+        "outputs": 1,
+        "x": 550,
+        "y": 460,
+        "wires": [
+            [
+                "510aa902c78db08b"
+            ]
+        ]
+    },
+    {
+        "id": "510aa902c78db08b",
+        "type": "http response",
+        "z": "tab_mystrom_backend",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 770,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "http_in_status",
+        "type": "http in",
+        "z": "tab_mystrom_backend",
+        "name": "Status API",
+        "url": "/api/status",
+        "method": "get",
+        "upload": false,
+        "x": 320,
+        "y": 560,
+        "wires": [
+            [
+                "fn_status"
+            ]
+        ]
+    },
+    {
+        "id": "fn_status",
+        "type": "function",
+        "z": "tab_mystrom_backend",
+        "name": "Get Power Status",
+        "func": "const ip = msg.req?.query?.ip;\nconst status = global.get('powerStatus') || {};\nif(ip) msg.payload = { ip, status: status[ip]===true?'ON':'OFF' };\nelse msg.payload = status;\nreturn msg;",
+        "outputs": 1,
+        "x": 550,
+        "y": 560,
+        "wires": [
+            [
+                "http_resp_status"
+            ]
+        ]
+    },
+    {
+        "id": "http_resp_status",
+        "type": "http response",
+        "z": "tab_mystrom_backend",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 770,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "fn_auto_scheduler",
+        "type": "function",
+        "z": "tab_mystrom_backend",
+        "name": "Auto Mode Scheduler",
+        "func": "const devices = global.get(\"devices\") || {};\nconst now = new Date();\nconst curTime = now.toTimeString().slice(0, 5);\nconst dayIdx = (now.getDay() + 6) % 7; // Monday = 0\n\nfor (const ip in devices) {\n    const cfg = devices[ip];\n    if (!cfg.auto || cfg.holiday) {\n        continue;\n    }\n\n    const dayPlan = cfg.days[dayIdx];\n    if (!dayPlan) {\n        continue\n    };\n\n    let val = null;\n    node.warn(cfg.offTime);\n    node.warn(curTime);\n    node.warn(msg.payload.power);\n    node.warn(cfg.limit);\n    node.warn(curTime >= cfg.offTime);\n    if (curTime === dayPlan.time) {\n        // EIN\n        val = true;\n    }\n    else if (curTime >= cfg.offTime && msg.payload.power < cfg.limit) {\n        val = false;\n    }\n\n\n    if (val !== null) {\n        node.send({ payload: { ip, val } });      // nur ein Output\n    }\n}\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1160,
+        "y": 660,
+        "wires": [
+            [
+                "63f617819a0783a5"
+            ]
+        ]
+    },
+    {
+        "id": "717e4fa2dfdacdd3",
+        "type": "ui-template",
+        "z": "tab_mystrom_backend",
+        "group": "91c8f0121e83fbc5",
+        "page": "",
+        "ui": "",
+        "name": "MyStrom Control Full",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n    html,\n    body,\n    .ms-wrap {\n        height: 100%;\n        width: 100%;\n        margin: 0;\n        padding: 0;\n        font-family: system-ui, sans-serif;\n        background: #111827;\n        /* Seitenhintergrund dunkel */\n        color: #e5e7eb;\n        /* Standardtext hell */\n    }\n\n    .ms-wrap {\n        padding: 10px;\n    }\n\n    .ms-card {\n        background: #1f2937;\n        /* Card Hintergrund dunkel */\n        border-radius: 14px;\n        box-shadow: 0 10px 24px rgba(0, 0, 0, .5);\n        overflow: hidden;\n        color: #e5e7eb;\n        /* Text hell */\n    }\n\n    .ms-head {\n        display: flex;\n        justify-content: space-between;\n        align-items: center;\n        padding: 14px;\n        background: linear-gradient(180deg, rgba(0, 148, 206, .15), rgba(0, 148, 206, 0));\n    }\n\n    .ms-title {\n        font-weight: 700;\n        font-size: 16px;\n        color: #fff;\n    }\n\n    .ms-sub {\n        font-size: 12px;\n        color: #a1a1aa;\n    }\n\n    .ms-badge {\n        font-size: 12px;\n        padding: 6px 10px;\n        border-radius: 999px;\n        border: 1px solid rgba(255, 255, 255, .2);\n        background: rgba(255, 255, 255, .05);\n        color: #e5e7eb;\n    }\n\n    .ms-badge.on {\n        border-color: rgba(16, 185, 129, .5);\n        background: rgba(16, 185, 129, .2);\n        color: #10b981;\n    }\n\n    .ms-badge.off {\n        border-color: rgba(239, 68, 68, .5);\n        background: rgba(239, 68, 68, .2);\n        color: #f87171;\n    }\n\n    .ms-badge.idle {\n        border-color: rgba(59, 130, 246, .5);\n        background: rgba(59, 130, 246, .15);\n        color: #3b82f6;\n    }\n\n    .ms-section {\n        padding: 12px 14px;\n    }\n\n    .ms-label {\n        font-size: 12px;\n        font-weight: 600;\n        color: #e5e7eb;\n        margin-bottom: 8px;\n    }\n\n    .ms-divider {\n        height: 1px;\n        background: rgba(255, 255, 255, .1);\n        margin: 10px 0;\n    }\n\n    .ms-row {\n        display: flex;\n        gap: 10px;\n        align-items: center;\n        flex-wrap: wrap;\n    }\n\n    .ms-row-between {\n        justify-content: space-between;\n        min-width: 80px;\n    }\n\n    .ms-input,\n    .ms-select {\n        flex: 1;\n        padding: 10px;\n        border-radius: 10px;\n        border: 1px solid rgba(255, 255, 255, .2);\n        font-size: 14px;\n        background: #1f2937;\n        color: #e5e7eb;\n    }\n\n    .ms-input:focus,\n    .ms-select:focus {\n        border-color: #0094ce;\n        box-shadow: 0 0 0 4px rgba(0, 148, 206, .2);\n        outline: none;\n    }\n\n    .ms-btn {\n        border: 1px solid rgba(255, 255, 255, .2);\n        border-radius: 10px;\n        padding: 10px 12px;\n        cursor: pointer;\n        font-size: 14px;\n        background: #1f2937;\n        color: #e5e7eb;\n    }\n\n    .ms-btn:hover {\n        background: rgba(255, 255, 255, .05);\n    }\n\n    .ms-btn-primary {\n        background: #0094ce;\n        border-color: #0094ce;\n        color: #fff;\n    }\n\n    .ms-btn-primary:hover {\n        background: #007fb1;\n    }\n\n    .ms-btn-ghost {\n        background: rgba(255, 255, 255, .05);\n    }\n\n    .ms-toggle {\n        display: flex;\n        gap: 10px;\n        align-items: center;\n        font-size: 14px;\n        color: #e5e7eb;\n    }\n\n    .ms-toggles {\n        display: flex;\n        flex-direction: column;\n        gap: 8px;\n        margin-top: 10px;\n    }\n\n    .ms-range {\n        width: 100%;\n    }\n\n    .ms-mono {\n        font-family: monospace;\n        color: #e5e7eb;\n    }\n\n    .ms-tableWrap {\n        overflow: auto;\n        border: 1px solid rgba(255, 255, 255, .1);\n        border-radius: 12px;\n    }\n\n    .ms-table {\n        width: 100%;\n        border-collapse: collapse;\n    }\n\n    .ms-table th {\n        text-align: left;\n        font-size: 12px;\n        color: #cbd5e1;\n        background: rgba(255, 255, 255, .05);\n        padding: 10px;\n    }\n\n    .ms-table td {\n        padding: 10px;\n        border-top: 1px solid rgba(255, 255, 255, .1);\n    }\n\n    .ms-foot {\n        padding: 10px 14px 14px 14px;\n        font-size: 12px;\n        color: #a1a1aa;\n    }\n\n    .ms-table input[type=\"time\"] {\n        background: #111827;\n        /* dunkler Hintergrund passend zum Theme */\n        color: #e5e7eb;\n        /* helle Schriftfarbe */\n        border: 1px solid rgba(255, 255, 255, .2);\n        border-radius: 6px;\n        padding: 4px;\n    }\n\n    .ms-table input[type=\"time\"]:focus {\n        border-color: #0094ce;\n        box-shadow: 0 0 0 2px rgba(0, 148, 206, .3);\n        outline: none;\n    }\n\n    /* Header + Menü ausblenden */\n    .ff-dashboard-header,\n    .ff-sidebar {\n        display: none !important;\n    }\n\n    /* Page Padding ggf. anpassen, wenn Header verschwindet */\n    .ff-page {\n        padding-top: 0 !important;\n    }\n\n    .v-toolbar__content {\n        display: none !important;\n    }\n\n    /* Toggle Switch Styles für Dark Mode */\n    .ms-toggle input[type=\"checkbox\"] {\n        display: none;\n        /* originale Checkbox ausblenden */\n    }\n\n    .ms-toggle .toggle-label {\n        position: relative;\n        display: inline-block;\n        width: 50px;\n        height: 26px;\n        background: #374151;\n        /* dunkler Schalterhintergrund */\n        border-radius: 13px;\n        cursor: pointer;\n        transition: background 0.3s;\n    }\n\n    .ms-toggle .toggle-label::after {\n        content: '';\n        position: absolute;\n        width: 22px;\n        height: 22px;\n        left: 2px;\n        top: 2px;\n        background: #f9fafb;\n        /* heller Knopf */\n        border-radius: 50%;\n        transition: transform 0.3s;\n        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);\n    }\n\n    /* Wenn aktiviert */\n    .ms-toggle input[type=\"checkbox\"]:checked+.toggle-label {\n        background: #0094ce;\n        /* aktive Farbe */\n    }\n\n    .ms-toggle input[type=\"checkbox\"]:checked+.toggle-label::after {\n        transform: translateX(24px);\n    }\n\n    /* Text daneben */\n    .ms-toggle span.text {\n        margin-left: 8px;\n        font-weight: 600;\n        color: #e5e7eb;\n    }\n</style>\n\n<div class=\"ms-wrap\">\n    <div class=\"ms-card\">\n        <div class=\"ms-head\">\n            <div>\n                <div class=\"ms-title\">MyStrom</div>\n            </div>\n            <div id=\"statusBadge\" class=\"ms-badge idle\">Idle</div>\n        </div>\n\n        <div class=\"ms-section\">\n            <div class=\"ms-label\">Device</div>\n            <div class=\"ms-row\">\n                <input id=\"newIp\" class=\"ms-input\" placeholder=\"192.168.0.50\">\n                <button id=\"btnAdd\" class=\"ms-btn\">Hinzufügen</button>\n                <button id=\"btnDel\" class=\"ms-btn ms-btn-ghost\">Löschen</button>\n            </div>\n            <div class=\"ms-row\" style=\"margin-top:10px\">\n                <select id=\"selDevice\" class=\"ms-select\"></select>\n            </div>\n        </div>\n\n        <div class=\"ms-divider\"></div>\n\n        <div class=\"ms-section\">\n            <div class=\"ms-row\">\n                <button id=\"btnPower\" class=\"ms-btn ms-btn-primary\">Status: —</button>\n            </div>\n            <div class=\"ms-toggles\">\n                <label class=\"ms-toggle\">\n                    <input type=\"checkbox\" id=\"chkAuto\">\n                    <span class=\"toggle-label\"></span>\n                    <span class=\"text\">Auto Mode</span>\n                </label>\n                <label class=\"ms-toggle\">\n                    <input type=\"checkbox\" id=\"chkHoliday\">\n                    <span class=\"toggle-label\"></span>\n                    <span class=\"text\">Holiday Mode</span>\n                </label>\n            </div>\n        </div>\n\n        <div class=\"ms-divider\"></div>\n\n        <div class=\"ms-section\">\n            <div class=\"ms-label\">Power Limit</div>\n            <div class=\"ms-row ms-row-between\">\n                <div id=\"limitVal\" class=\"ms-mono\">60 W</div>\n            </div>\n            <input id=\"rngLimit\" class=\"ms-range\" type=\"range\" min=\"0\" max=\"300\" step=\"5\">\n        </div>\n\n        <div class=\"ms-divider\"></div>\n\n        <div class=\"ms-section\">\n            <div class=\"ms-label\">Früheste OFF Zeit</div>\n            <div class=\"ms-row\">\n                <input id=\"timeOff\" class=\"ms-input\" type=\"time\">\n            </div>\n        </div>\n\n        <div class=\"ms-divider\"></div>\n\n        <div class=\"ms-section\">\n            <div class=\"ms-label\">ON Zeiten (pro IP)</div>\n            <div class=\"ms-tableWrap\">\n                <table class=\"ms-table\">\n                    <thead>\n                        <tr>\n                            <th>Tag</th>\n                            <th>Zeit</th>\n                        </tr>\n                    </thead>\n                    <tbody id=\"tblDays\"></tbody>\n                </table>\n            </div>\n            <div class=\"ms-row\" style=\"margin-top:10px\">\n                <button id=\"btnSaveDays\" class=\"ms-btn\">Speichern</button>\n            </div>\n        </div>\n\n        <div class=\"ms-foot\">Aktives Gerät: <span id=\"activeIp\" class=\"ms-mono\">—</span></div>\n    </div>\n</div>\n\n<script>\n    const DEFAULT_DAYS = [\n        { name: 'Monday', time: '06:45' },\n        { name: 'Tuesday', time: '06:55' },\n        { name: 'Wednesday', time: '06:55' },\n        { name: 'Thursday', time: '07:40' },\n        { name: 'Friday', time: '06:50' },\n        { name: 'Saturday', time: '08:00' },\n        { name: 'Sunday', time: '08:00' }\n    ];\n\n    let devices = [];\n    let selected = null;\n    let configByIp = {};\n    let powerStatus = {}; // true = on, false = off\n\n    function saveConfig(ip) {\n        return fetch('/api/config', {\n            method: 'POST',\n            headers: { 'Content-Type': 'application/json' },\n            body: JSON.stringify({ ip, ...configByIp[ip] })\n        });\n    }\n\n    function loadConfig(ip) {\n        return fetch(`/api/report?ip=${encodeURIComponent(ip)}`)\n            .then(r => r.json())\n            .then(data => {\n                if (!data.days) data.days = JSON.parse(JSON.stringify(DEFAULT_DAYS));\n                configByIp[ip] = data;\n                selected = ip;\n                renderUI();\n                updatePowerButton();\n            });\n    }\n\n    function sendPower(ip, val) {\n        return fetch('/api/power', {\n            method: 'POST',\n            headers: { 'Content-Type': 'application/json' },\n            body: JSON.stringify({ ip, val })\n        })\n            .then(() => {\n                powerStatus[ip] = val;\n                updatePowerButton();\n            });\n    }\n\n    function deleteDevice(ip) {\n        return fetch('/api/config/delete', {\n            method: 'POST',\n            headers: { 'Content-Type': 'application/json' },\n            body: JSON.stringify({ ip })\n        });\n    }\n\n    function renderUI() {\n        const sel = document.getElementById('selDevice');\n        sel.innerHTML = '';\n        devices.forEach(d => {\n            const o = document.createElement('option');\n            o.value = d;\n            o.textContent = d;\n            if (d === selected) o.selected = true;\n            sel.appendChild(o);\n        });\n        document.getElementById('activeIp').textContent = selected || '—';\n        if (selected && configByIp[selected]) {\n            document.getElementById('chkAuto').checked = configByIp[selected].auto;\n            document.getElementById('chkHoliday').checked = configByIp[selected].holiday;\n            document.getElementById('rngLimit').value = configByIp[selected].limit;\n            document.getElementById('limitVal').textContent = configByIp[selected].limit + ' W';\n            document.getElementById('timeOff').value = configByIp[selected].offTime;\n            const tbl = document.getElementById('tblDays');\n            tbl.innerHTML = '';\n            configByIp[selected].days.forEach(d => {\n                const tr = document.createElement('tr');\n                tr.innerHTML = `<td>${d.name}</td><td><input type=\"time\" value=\"${d.time}\" data-day=\"${d.name}\"></td>`;\n                tbl.appendChild(tr);\n            });\n            updatePowerButton();\n        }\n    }\n\n    function updatePowerButton() {\n        const btn = document.getElementById('btnPower');\n        if (!selected) {\n            btn.textContent = 'Status: —';\n            btn.className = 'ms-btn ms-btn-primary';\n            return;\n        }\n        const on = powerStatus[selected];\n        btn.textContent = !on ? 'EIN' : 'AUS';\n        btn.className = 'ms-btn ' + (!on ? 'ms-btn-primary' : 'ms-btn-ghost');\n    }\n\n    document.getElementById('btnAdd').onclick = () => {\n        const ip = document.getElementById('newIp')\n            .value\n            .trim();\n        if (ip && !devices.includes(ip)) {\n            devices.push(ip);\n            configByIp[ip] = {\n                auto: true,\n                holiday: false,\n                limit: 60,\n                offTime: '22:00',\n                days: JSON.parse(JSON.stringify(DEFAULT_DAYS))\n            };\n            selected = ip;\n            saveConfig(ip);\n            renderUI();\n        }\n        document.getElementById('newIp').value = '';\n    };\n    document.getElementById('btnDel').onclick = () => {\n        if (selected) {\n            deleteDevice(selected)\n                .then(() => {\n                    devices = devices.filter(d => d !== selected);\n                    delete configByIp[selected];\n                    selected = devices[0] || null;\n                    renderUI();\n                });\n        }\n    };\n    document.getElementById('selDevice').onchange = e => loadConfig(e.target.value);\n    document.getElementById('btnPower').onclick = () => {\n        if (selected) sendPower(selected, !powerStatus[selected]);\n    };\n    document.getElementById('chkAuto').onchange = e => {\n        if (!selected) return;\n        configByIp[selected].auto = e.target.checked;\n\n        if (e.target.checked) {\n            // Holiday ausschalten, wenn Auto eingeschaltet wird\n            configByIp[selected].holiday = false;\n            document.getElementById('chkHoliday').checked = false;\n        }\n\n        saveConfig(selected);\n    };\n\n    // Holiday Mode Toggle\n    document.getElementById('chkHoliday').onchange = e => {\n        if (!selected) return;\n        configByIp[selected].holiday = e.target.checked;\n\n        if (e.target.checked) {\n            // Auto ausschalten, wenn Holiday eingeschaltet wird\n            configByIp[selected].auto = false;\n            document.getElementById('chkAuto').checked = false;\n        }\n\n        saveConfig(selected);\n    };\n    document.getElementById('rngLimit').oninput = e => {\n        document.getElementById('limitVal').textContent = e.target.value + ' W';\n    };\n    document.getElementById('rngLimit').onchange = e => {\n        if (selected) {\n            configByIp[selected].limit = Number(e.target.value);\n            saveConfig(selected);\n        }\n    };\n    document.getElementById('timeOff').onchange = e => {\n        if (selected) {\n            configByIp[selected].offTime = e.target.value;\n            saveConfig(selected);\n        }\n    };\n    document.getElementById('btnSaveDays').onclick = () => {\n        if (selected) {\n            document.querySelectorAll('#tblDays input')\n                .forEach(inp => {\n                    const day = inp.dataset.day;\n                    const val = inp.value;\n                    const d = configByIp[selected].days.find(dd => dd.name === day);\n                    if (d) d.time = val;\n                });\n            saveConfig(selected);\n        }\n    };\n\n    // Auto Scheduler jede Minute prüfen\n    setInterval(() => {\n        const now = new Date();\n        const curTime = now.toTimeString()\n            .slice(0, 5);\n        const dayIdx = (now.getDay() + 6) % 7;\n        devices.forEach(ip => {\n            const cfg = configByIp[ip];\n            if (!cfg || !cfg.auto || cfg.holiday) return;\n            if (cfg.days[dayIdx].time === curTime) {\n                sendPower(ip, true);\n            } else if (cfg.offTime === curTime) sendPower(ip, false);\n        });\n    }, 60 * 1000);\n\n    // initial Devices laden\n    fetch('/api/devices')\n        .then(r => r.json())\n        .then(list => {\n            devices = list || [];\n            if (devices.length > 0) loadConfig(devices[0]);\n            renderUI();\n        });\n</script>",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1160,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9a0407acdbdd58fb",
+        "type": "inject",
+        "z": "tab_mystrom_backend",
+        "g": "789363e2f2177c0e",
+        "name": "Daily 6:00 trigger",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 06 * * *",
+        "once": false,
+        "x": 310,
+        "y": 780,
+        "wires": [
+            [
+                "e27cea611a4ceb83"
+            ]
+        ]
+    },
+    {
+        "id": "e27cea611a4ceb83",
+        "type": "function",
+        "z": "tab_mystrom_backend",
+        "g": "789363e2f2177c0e",
+        "name": "Random ON/OFF 6-8am",
+        "func": "// Holiday Morning ON/OFF für alle holiday=true Geräte\nconst devices = global.get('devices') || {};\nconst now = new Date();\nlet msgs = [];\n\nfor(const ip in devices){\n    const cfg = devices[ip];\n    if(!cfg.holiday) {\n        continue;\n    }\n\n    let onMinutes = Math.floor(Math.random() * 120);\n    let onTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 6, 0);\n    onTime.setMinutes(onTime.getMinutes() + onMinutes);\n\n    let offMinutes = 60 + Math.floor(Math.random() * 120);\n    let offTime = new Date(onTime.getTime() + offMinutes * 60000);\n\n    msgs.push({ payload: { ip, val: true, delay: onTime.getTime() - now.getTime() } });\n    msgs.push({ payload: { ip, val: false, delay: offTime.getTime() - now.getTime() } });\n}\nreturn [msgs];",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 780,
+        "wires": [
+            [
+                "delay_morning"
+            ]
+        ]
+    },
+    {
+        "id": "delay_morning",
+        "type": "delay",
+        "z": "tab_mystrom_backend",
+        "g": "789363e2f2177c0e",
+        "name": "Wait until random time",
+        "pauseType": "delay",
+        "timeout": "0",
+        "timeoutUnits": "ms",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "0",
+        "randomUnits": "ms",
+        "drop": false,
+        "outputs": 1,
+        "x": 810,
+        "y": 780,
+        "wires": [
+            [
+                "22137f19adf9c78a"
+            ]
+        ]
+    },
+    {
+        "id": "22137f19adf9c78a",
+        "type": "function",
+        "z": "tab_mystrom_backend",
+        "g": "789363e2f2177c0e",
+        "name": "Send to MyStrom",
+        "func": "const ip = msg.payload.ip;\nconst val = msg.payload.val;\nmsg.url = `http://${ip}/relay?state=${val?1:0}`;\nmsg.method='GET';\nreturn msg;",
+        "outputs": 1,
+        "x": 1070,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ae3a8cae7676dee5",
+        "type": "debug",
+        "z": "tab_mystrom_backend",
+        "g": "789363e2f2177c0e",
+        "name": "Debug",
+        "active": true,
+        "complete": "true",
+        "x": 1230,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "0ef25c32a76607c4",
+        "type": "inject",
+        "z": "tab_mystrom_backend",
+        "g": "c898844e4704ba4a",
+        "name": "Daily 18:00 trigger",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 18 * * *",
+        "once": false,
+        "x": 310,
+        "y": 930,
+        "wires": [
+            [
+                "8505ed2e8db0458e"
+            ]
+        ]
+    },
+    {
+        "id": "8505ed2e8db0458e",
+        "type": "function",
+        "z": "tab_mystrom_backend",
+        "g": "c898844e4704ba4a",
+        "name": "Random ON/OFF 18-20",
+        "func": "// Holiday Evening ON/OFF für alle holiday=true Geräte\nconst devices = global.get('devices') || {};\nconst now = new Date();\nlet msgs = [];\n\nfor(const ip in devices){\n    const cfg = devices[ip];\n    if(!cfg.holiday) continue;\n\n    let onMinutes = Math.floor(Math.random() * 120);\n    let onTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 18, 0);\n    onTime.setMinutes(onTime.getMinutes() + onMinutes);\n\n    let offMinutes = 60 + Math.floor(Math.random() * 120);\n    let offTime = new Date(onTime.getTime() + offMinutes * 60000);\n\n    msgs.push({payload:{ip, val:true, delay:onTime - now}});\n    msgs.push({payload:{ip, val:false, delay:offTime - now}});\n}\nreturn [msgs];",
+        "outputs": 1,
+        "x": 570,
+        "y": 930,
+        "wires": [
+            [
+                "delay_evening"
+            ]
+        ]
+    },
+    {
+        "id": "delay_evening",
+        "type": "delay",
+        "z": "tab_mystrom_backend",
+        "g": "c898844e4704ba4a",
+        "name": "Wait until random time",
+        "pauseType": "delay",
+        "timeout": "0",
+        "timeoutUnits": "ms",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "0",
+        "randomUnits": "ms",
+        "drop": false,
+        "outputs": 1,
+        "x": 810,
+        "y": 930,
+        "wires": [
+            [
+                "f544cfe9cacd6182"
+            ]
+        ]
+    },
+    {
+        "id": "f544cfe9cacd6182",
+        "type": "function",
+        "z": "tab_mystrom_backend",
+        "g": "c898844e4704ba4a",
+        "name": "Send to MyStrom",
+        "func": "const ip = msg.payload.ip;\nconst val = msg.payload.val;\nmsg.url = `http://${ip}/relay?state=${val?1:0}`;\nmsg.method='GET';\nreturn msg;",
+        "outputs": 1,
+        "x": 1070,
+        "y": 930,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b78bf5b566e150d1",
+        "type": "debug",
+        "z": "tab_mystrom_backend",
+        "g": "c898844e4704ba4a",
+        "name": "Debug",
+        "active": true,
+        "complete": "true",
+        "x": 1230,
+        "y": 930,
+        "wires": []
+    },
+    {
+        "id": "770d28665dcb519f",
+        "type": "http request",
+        "z": "tab_mystrom_backend",
+        "name": "GET REPORT",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 880,
+        "y": 660,
+        "wires": [
+            [
+                "fn_auto_scheduler"
+            ]
+        ]
+    },
+    {
+        "id": "791d446ad6184c7e",
+        "type": "function",
+        "z": "tab_mystrom_backend",
+        "name": "create url",
+        "func": "const devices = global.get(\"devices\") || {};\nfor (const ip in devices) {\n    const cfg = devices[ip];\n    if (!cfg.auto || cfg.holiday) {\n        continue\n        };\n\n    // URL für GET REPORT pro Gerät\n    const msgOut = {\n        payload: {},\n        ip: ip,\n        url: `http://${ip}/report`,\n        cfg: cfg\n    };\n    node.send(msgOut); // wird an den http request Node gesendet\n}\nreturn null; // da node.send benutzt wird\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 660,
+        "wires": [
+            [
+                "770d28665dcb519f"
+            ]
+        ]
+    },
+    {
+        "id": "3cb90acfb5ff9bc6",
+        "type": "function",
+        "z": "tab_mystrom_backend",
+        "name": "timer jede minute",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "function fireOnFullMinute() {\n    const now = new Date();\n    const msTillNextMinute = 60000 - (now.getSeconds() * 1000 + now.getMilliseconds());\n\n    setTimeout(() => {\n        node.send({ payload: new Date() });\n        fireOnFullMinute(); // wiederholen\n    }, msTillNextMinute);\n}\n\nfireOnFullMinute();\nreturn null; // weil wir per setTimeout senden\n",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 660,
+        "wires": [
+            [
+                "791d446ad6184c7e"
             ]
         ]
     }
