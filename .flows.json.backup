@@ -15,6 +15,14 @@
         "info": ""
     },
     {
+        "id": "14ba09d99789e7cd",
+        "type": "tab",
+        "label": "Status",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "51e7d3b10f18b555",
         "type": "group",
         "z": "c6af2b852a417e76",
@@ -117,7 +125,7 @@
         ],
         "x": 174,
         "y": 739,
-        "w": 1152,
+        "w": 1192,
         "h": 82
     },
     {
@@ -129,18 +137,16 @@
             "label": true
         },
         "nodes": [
-            "0ef25c32a76607c4",
             "8505ed2e8db0458e",
             "delay_evening",
             "f544cfe9cacd6182",
             "b78bf5b566e150d1",
-            "a7a785c063f0b89a",
-            "bc6e67bdbe8f851d"
+            "0ef25c32a76607c4"
         ],
         "x": 174,
-        "y": 819,
-        "w": 1152,
-        "h": 152
+        "y": 879,
+        "w": 1192,
+        "h": 92
     },
     {
         "id": "ff_ui_base",
@@ -762,8 +768,13 @@
         "z": "c6af2b852a417e76",
         "g": "holiday_evening",
         "name": "Random ON/OFF 18-20",
-        "func": "// Random ON time between 18:00-20:00\nlet now = new Date();\nlet onMinutes = Math.floor(Math.random() * 120);\nlet onTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 18, 0, 0);\nonTime.setMinutes(onTime.getMinutes() + onMinutes);\n\n// Random OFF duration 1-3 hours (60-180 min)\nlet offMinutes = 60 + Math.floor(Math.random() * 120);\nlet offTime = new Date(onTime.getTime() + offMinutes * 60000);\n\n// Send ON message\nlet msgOn = { delay: onTime.getTime() - now.getTime(), url: 'http://192.168.0.196/relay?state=1' };\nnode.send(msgOn);\n\n// Send OFF message\nlet msgOff = { delay: offTime.getTime() - now.getTime(), url: 'http://192.168.0.196/relay?state=0' };\nnode.send(msgOff);\n\nreturn null;",
+        "func": "// Random ON time between 18:00-20:00\nlet now = new Date();\nlet onMinutes = Math.floor(Math.random() * 120);\nlet onTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 18, 0, 0);\nonTime.setMinutes(onTime.getMinutes() + onMinutes);\n\n// Random OFF duration 1-3 hours (60-180 min)\nlet offMinutes = 60 + Math.floor(Math.random() * 120);\nlet offTime = new Date(onTime.getTime() + offMinutes * 60000);\n\nnode.warn(\"ON Time: \" + onTime.toLocaleTimeString());\nnode.warn(\"OFF Time: \" + offTime.toLocaleTimeString());\n\n// Send ON message\nlet msgOn = { delay: onTime.getTime() - now.getTime(), url: 'http://192.168.0.196/relay?state=1' };\nnode.send(msgOn);\n\n// Send OFF message\nlet msgOff = { delay: offTime.getTime() - now.getTime(), url: 'http://192.168.0.196/relay?state=0' };\nnode.send(msgOff);\n\nreturn null;",
         "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 530,
         "y": 1040,
         "wires": [
@@ -1181,8 +1192,12 @@
             }
         ],
         "repeat": "",
-        "crontab": "00 06 * * *",
+        "crontab": "00 05 * * *",
         "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
         "x": 310,
         "y": 780,
         "wires": [
@@ -1197,7 +1212,7 @@
         "z": "tab_mystrom_backend",
         "g": "789363e2f2177c0e",
         "name": "Random ON/OFF 6-8am",
-        "func": "// Holiday Morning ON/OFF für alle holiday=true Geräte\nconst devices = global.get('devices') || {};\nconst now = new Date();\nlet msgs = [];\n\nfor(const ip in devices){\n    const cfg = devices[ip];\n    if(!cfg.holiday) {\n        continue;\n    }\n\n    let onMinutes = Math.floor(Math.random() * 120);\n    let onTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 6, 0);\n    onTime.setMinutes(onTime.getMinutes() + onMinutes);\n\n    let offMinutes = 80 + Math.floor(Math.random() * 100);\n    let offTime = new Date(onTime.getTime() + offMinutes * 60000);\n\nmsgs.push({ payload: { ip, val: true }, delay: onTime.getTime() - now.getTime() });\nmsgs.push({ payload: { ip, val: false }, delay: offTime.getTime() - now.getTime() });\n\n}\nreturn [msgs];",
+        "func": "// Holiday Morning ON/OFF für alle holiday=true Geräte\nconst devices = global.get('devices') || {};\nconst now = new Date();\nlet msgs = [];\n\nfor (const ip in devices) {\n    const cfg = devices[ip];\n    if (!cfg.holiday) {\n        continue;\n    }\n\n    let onMinutes = Math.floor(Math.random() * 120);\n    let onTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 6, 0);\n    onTime.setMinutes(onTime.getMinutes() + onMinutes);\n\n    let offMinutes = 80 + Math.floor(Math.random() * 100);\n    let offTime = new Date(onTime.getTime() + offMinutes * 60000);\n    node.warn(`Device ${ip} (Holiday: ${cfg.holiday})`);\n    node.warn(`  ON Time:  ${onTime.toLocaleTimeString()}`);\n    node.warn(`  OFF Time: ${offTime.toLocaleTimeString()}`);\n\n    msgs.push({ payload: { ip, val: true }, delay: onTime.getTime() - now.getTime() });\n    msgs.push({ payload: { ip, val: false }, delay: offTime.getTime() - now.getTime() });\n\n}\nreturn [msgs];",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -1248,7 +1263,10 @@
         "x": 1070,
         "y": 780,
         "wires": [
-            []
+            [
+                "63f617819a0783a5",
+                "ae3a8cae7676dee5"
+            ]
         ]
     },
     {
@@ -1259,31 +1277,9 @@
         "name": "Debug",
         "active": true,
         "complete": "true",
-        "x": 1230,
+        "x": 1270,
         "y": 780,
         "wires": []
-    },
-    {
-        "id": "0ef25c32a76607c4",
-        "type": "inject",
-        "z": "tab_mystrom_backend",
-        "g": "c898844e4704ba4a",
-        "name": "Daily 18:00 trigger",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "00 18 * * *",
-        "once": false,
-        "x": 310,
-        "y": 930,
-        "wires": [
-            [
-                "8505ed2e8db0458e"
-            ]
-        ]
     },
     {
         "id": "8505ed2e8db0458e",
@@ -1291,7 +1287,7 @@
         "z": "tab_mystrom_backend",
         "g": "c898844e4704ba4a",
         "name": "Random ON/OFF 18-20",
-        "func": "// Holiday Evening ON/OFF für alle holiday=true Geräte\nconst devices = global.get('devices') || {};\nconst now = new Date();\nlet msgs = [];\n\nfor (const ip in devices) {\n    const cfg = devices[ip];\n    node.warn(cfg.holiday);\n    if (!cfg.holiday) continue;\n\n    let onMinutes = Math.floor(Math.random() * 60);\n    node.warn(onMinutes);\n    let onTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 18, 0);\n    node.warn(onTime);\n    onTime.setMinutes(onTime.getMinutes() + onMinutes);\n    node.warn(onTime);\n\n    let offMinutes = 120 + Math.floor(Math.random() * 60);\n    node.warn(offMinutes);\n    let offTime = new Date(onTime.getTime() + offMinutes * 60000);\n    node.warn(offTime);\n\n\n    msgs.push({ payload: { ip, val: true }, delay: onTime.getTime() - now.getTime() });\n    msgs.push({ payload: { ip, val: false }, delay: offTime.getTime() - now.getTime() });\n}\nnode.warn(msgs);\nreturn [msgs];",
+        "func": "// Holiday Evening ON/OFF für alle holiday=true Geräte\nconst devices = global.get('devices') || {};\nconst now = new Date();\nlet msgs = [];\n\nfor (const ip in devices) {\n    const cfg = devices[ip];\n    if (!cfg.holiday) continue;\n\n    let onMinutes = Math.floor(Math.random() * 60);\n    let onTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 18, 0);\n    onTime.setMinutes(onTime.getMinutes() + onMinutes);\n\n    let offMinutes = 120 + Math.floor(Math.random() * 60);\n    let offTime = new Date(onTime.getTime() + offMinutes * 60000);\n    node.warn(`Device ${ip} (Holiday: ${cfg.holiday})`);\n    node.warn(`  ON Time:  ${onTime.toLocaleTimeString()}`);\n    node.warn(`  OFF Time: ${offTime.toLocaleTimeString()}`);\n\n\n    msgs.push({ payload: { ip, val: true }, delay: onTime.getTime() - now.getTime() });\n    msgs.push({ payload: { ip, val: false }, delay: offTime.getTime() - now.getTime() });\n}\nreturn [msgs];",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -1302,8 +1298,7 @@
         "y": 930,
         "wires": [
             [
-                "delay_evening",
-                "a7a785c063f0b89a"
+                "delay_evening"
             ]
         ]
     },
@@ -1329,8 +1324,7 @@
         "y": 930,
         "wires": [
             [
-                "f544cfe9cacd6182",
-                "bc6e67bdbe8f851d"
+                "f544cfe9cacd6182"
             ]
         ]
     },
@@ -1345,7 +1339,10 @@
         "x": 1070,
         "y": 930,
         "wires": [
-            []
+            [
+                "63f617819a0783a5",
+                "b78bf5b566e150d1"
+            ]
         ]
     },
     {
@@ -1356,8 +1353,8 @@
         "name": "Debug",
         "active": true,
         "complete": "true",
-        "x": 1230,
-        "y": 930,
+        "x": 1270,
+        "y": 920,
         "wires": []
     },
     {
@@ -1425,28 +1422,58 @@
         ]
     },
     {
-        "id": "a7a785c063f0b89a",
-        "type": "debug",
+        "id": "b4154470c105e941",
+        "type": "function",
         "z": "tab_mystrom_backend",
-        "g": "c898844e4704ba4a",
-        "name": "debug 4",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 710,
-        "y": 860,
-        "wires": []
+        "name": "create url",
+        "func": "msg.payload = new Date().toString();\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 1040,
+        "wires": [
+            [
+                "c18298f0a0b5626b"
+            ]
+        ]
     },
     {
-        "id": "bc6e67bdbe8f851d",
+        "id": "c599e386637bda0f",
+        "type": "inject",
+        "z": "tab_mystrom_backend",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 400,
+        "y": 1040,
+        "wires": [
+            [
+                "b4154470c105e941"
+            ]
+        ]
+    },
+    {
+        "id": "c18298f0a0b5626b",
         "type": "debug",
         "z": "tab_mystrom_backend",
-        "g": "c898844e4704ba4a",
         "name": "debug 5",
         "active": true,
         "tosidebar": true,
@@ -1456,8 +1483,179 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 970,
-        "y": 880,
+        "x": 770,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "641b0b2f62fe7c51",
+        "type": "cronplus",
+        "z": "tab_mystrom_backend",
+        "name": "",
+        "outputField": "payload",
+        "timeZone": "Europe/Zurich",
+        "storeName": "",
+        "commandResponseMsgOutput": "output1",
+        "defaultLocation": "47.325035990044476 8.166961669921875",
+        "defaultLocationType": "fixed",
+        "outputs": 1,
+        "options": [
+            {
+                "name": "schedule1",
+                "topic": "topic1",
+                "payloadType": "default",
+                "payload": "",
+                "expressionType": "cron",
+                "expression": "00 18 * * *",
+                "location": "",
+                "offset": "0",
+                "solarType": "all",
+                "solarEvents": "sunrise,sunset"
+            }
+        ],
+        "x": 380,
+        "y": 1120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c1d962105c4119e2",
+        "type": "cronplus",
+        "z": "tab_mystrom_backend",
+        "name": "",
+        "outputField": "payload",
+        "timeZone": "Europe/Zurich",
+        "storeName": "",
+        "commandResponseMsgOutput": "output1",
+        "defaultLocation": "47.325035990044476 8.166961669921875",
+        "defaultLocationType": "fixed",
+        "outputs": 1,
+        "options": [
+            {
+                "name": "schedule1",
+                "topic": "topic1",
+                "payloadType": "default",
+                "payload": "",
+                "expressionType": "cron",
+                "expression": "00 6 * * *",
+                "location": "",
+                "offset": "0",
+                "solarType": "all",
+                "solarEvents": "sunrise,sunset"
+            }
+        ],
+        "x": 400,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0ef25c32a76607c4",
+        "type": "inject",
+        "z": "tab_mystrom_backend",
+        "g": "c898844e4704ba4a",
+        "name": "Daily 18:00 trigger",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 17 * * *",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 310,
+        "y": 930,
+        "wires": [
+            [
+                "8505ed2e8db0458e"
+            ]
+        ]
+    },
+    {
+        "id": "14ad6be888ffc2a0",
+        "type": "cronplus",
+        "z": "tab_mystrom_backend",
+        "name": "Daily 18:00 trigger",
+        "outputField": "payload",
+        "timeZone": "Europe/Zurich",
+        "storeName": "",
+        "commandResponseMsgOutput": "output1",
+        "defaultLocation": "47.325035990044476 8.166961669921875",
+        "defaultLocationType": "fixed",
+        "outputs": 1,
+        "options": [
+            {
+                "name": "schedule1",
+                "topic": "topic1",
+                "payloadType": "default",
+                "payload": "",
+                "expressionType": "cron",
+                "expression": "00 18 * * *",
+                "location": "",
+                "offset": "0",
+                "solarType": "all",
+                "solarEvents": "sunrise,sunset"
+            }
+        ],
+        "x": 410,
+        "y": 1080,
+        "wires": [
+            [
+                "b4154470c105e941"
+            ]
+        ]
+    },
+    {
+        "id": "cae850ad5e43de66",
+        "type": "http in",
+        "z": "14ba09d99789e7cd",
+        "name": "Status",
+        "url": "/api/state",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 290,
+        "y": 120,
+        "wires": [
+            [
+                "e3a38e952796cbe3",
+                "1c3b698b80f1cfb8"
+            ]
+        ]
+    },
+    {
+        "id": "e3a38e952796cbe3",
+        "type": "http response",
+        "z": "14ba09d99789e7cd",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 540,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "1c3b698b80f1cfb8",
+        "type": "debug",
+        "z": "14ba09d99789e7cd",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 470,
+        "y": 200,
         "wires": []
     }
 ]
