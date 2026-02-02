@@ -121,12 +121,13 @@
             "delay_morning",
             "22137f19adf9c78a",
             "ae3a8cae7676dee5",
-            "935173f8fa549b44"
+            "935173f8fa549b44",
+            "5d507b8ed9afe07f"
         ],
         "x": 194,
-        "y": 739,
+        "y": 699,
         "w": 1172,
-        "h": 82
+        "h": 122
     },
     {
         "id": "c898844e4704ba4a",
@@ -1186,7 +1187,7 @@
         "z": "tab_mystrom_backend",
         "g": "789363e2f2177c0e",
         "name": "Random ON/OFF 6-8am",
-        "func": "// Holiday Morning ON/OFF für alle holiday=true Geräte\nconst devices = global.get('devices') || {};\nconst now = new Date();\nlet msgs = [];\n\nfor (const ip in devices) {\n    const cfg = devices[ip];\n    if (!cfg.holiday) {\n        continue;\n    }\n\n    let onMinutes = Math.floor(Math.random() * 120);\n    let onTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 6, 0);\n    onTime.setMinutes(onTime.getMinutes() + onMinutes);\n\n    let offMinutes = 80 + Math.floor(Math.random() * 100);\n    let offTime = new Date(onTime.getTime() + offMinutes * 60000);\n    node.warn(`Device ${ip} (Holiday: ${cfg.holiday})`);\n    node.warn(`  ON Time:  ${onTime.toLocaleTimeString()}`);\n    node.warn(`  OFF Time: ${offTime.toLocaleTimeString()}`);\n\n    msgs.push({ payload: { ip, val: true }, delay: onTime.getTime() - now.getTime() });\n    msgs.push({ payload: { ip, val: false }, delay: offTime.getTime() - now.getTime() });\n\n}\nreturn [msgs];",
+        "func": "const devices = global.get('devices') || {};\nlet now = new Date();\n//now = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 6)\nlet msgs = [];\n\nfor (const ip in devices) {\n    const cfg = devices[ip];\n    if (!cfg.holiday) continue;\n\n    // ON nach 0-60 Minuten ab jetzt\n    let onDelay = Math.floor(Math.random() * 60) * 60000;\n\n    // OFF nach 2-3 Stunden nach ON\n    let offDelay = onDelay + (120 + Math.floor(Math.random() * 60)) * 60000;\n\n    let onTime = new Date(now.getTime() + onDelay);\n    let offTime = new Date(now.getTime() + offDelay);\n\n    node.warn(`Device ${ip}`);\n    node.warn(`ON : ${onTime.toLocaleString()}`);\n    node.warn(`OFF: ${offTime.toLocaleString()}`);\n    node.warn(`NOW: ${now.toLocaleString()}`);\n\n    msgs.push({ payload: { ip, val: true }, delay: onDelay });\n    msgs.push({ payload: { ip, val: false }, delay: offDelay });\n}\n\nreturn [msgs];\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -1197,7 +1198,8 @@
         "y": 780,
         "wires": [
             [
-                "delay_morning"
+                "delay_morning",
+                "5d507b8ed9afe07f"
             ]
         ]
     },
@@ -1207,7 +1209,7 @@
         "z": "tab_mystrom_backend",
         "g": "789363e2f2177c0e",
         "name": "Wait until random time",
-        "pauseType": "delay",
+        "pauseType": "delayv",
         "timeout": "0",
         "timeoutUnits": "ms",
         "rate": "1",
@@ -1217,6 +1219,7 @@
         "randomLast": "0",
         "randomUnits": "ms",
         "drop": false,
+        "allowrate": false,
         "outputs": 1,
         "x": 810,
         "y": 780,
@@ -1261,7 +1264,7 @@
         "z": "tab_mystrom_backend",
         "g": "c898844e4704ba4a",
         "name": "Random ON/OFF 18-20",
-        "func": "// Holiday Evening ON/OFF für alle holiday=true Geräte\nconst devices = global.get('devices') || {};\nconst now = new Date();\nlet msgs = [];\n\nfor (const ip in devices) {\n    const cfg = devices[ip];\n    if (!cfg.holiday) continue;\n\n    let onMinutes = Math.floor(Math.random() * 60);\n    let onTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 18, 0);\n    onTime.setMinutes(onTime.getMinutes() + onMinutes);\n\n    let offMinutes = 120 + Math.floor(Math.random() * 60);\n    let offTime = new Date(onTime.getTime() + offMinutes * 60000);\n    node.warn(`Device ${ip} (Holiday: ${cfg.holiday})`);\n    node.warn(`  ON Time:  ${onTime.toLocaleTimeString()}`);\n    node.warn(`  OFF Time: ${offTime.toLocaleTimeString()}`);\n\n\n    msgs.push({ payload: { ip, val: true }, delay: onTime.getTime() - now.getTime() });\n    msgs.push({ payload: { ip, val: false }, delay: offTime.getTime() - now.getTime() });\n}\nreturn [msgs];",
+        "func": "const devices = global.get('devices') || {};\nlet now = new Date();\n//now = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 17)\nlet msgs = [];\n\nfor (const ip in devices) {\n    const cfg = devices[ip];\n    if (!cfg.holiday) continue;\n\n    // ON nach 0-60 Minuten ab jetzt\n    let onDelay = Math.floor(Math.random() * 60) * 60000;\n\n    // OFF nach 2-3 Stunden nach ON\n    let offDelay = onDelay + (120 + Math.floor(Math.random() * 60)) * 60000;\n\n    let onTime = new Date(now.getTime() + onDelay);\n    let offTime = new Date(now.getTime() + offDelay);\n\n    node.warn(`Device ${ip}`);\n    node.warn(`ON : ${onTime.toLocaleString()}`);\n    node.warn(`OFF: ${offTime.toLocaleString()}`);\n    node.warn(`NOW: ${now.toLocaleString()}`);\n\n    msgs.push({ payload: { ip, val: true }, delay: onDelay });\n    msgs.push({ payload: { ip, val: false }, delay: offDelay });\n}\n\nreturn [msgs];\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -1400,7 +1403,7 @@
         "type": "cronplus",
         "z": "tab_mystrom_backend",
         "g": "c898844e4704ba4a",
-        "name": "Daily 18:00 trigger",
+        "name": "Daily 17:30 trigger",
         "outputField": "payload",
         "timeZone": "Europe/Zurich",
         "storeName": "",
@@ -1415,7 +1418,7 @@
                 "payloadType": "default",
                 "payload": "",
                 "expressionType": "cron",
-                "expression": "00 18 * * *",
+                "expression": "30 17 * * *",
                 "location": "",
                 "offset": "0",
                 "solarType": "all",
@@ -1466,6 +1469,24 @@
         ]
     },
     {
+        "id": "5d507b8ed9afe07f",
+        "type": "debug",
+        "z": "tab_mystrom_backend",
+        "g": "789363e2f2177c0e",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 740,
+        "wires": []
+    },
+    {
         "id": "cae850ad5e43de66",
         "type": "http in",
         "z": "14ba09d99789e7cd",
@@ -1508,7 +1529,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 470,
+        "x": 480,
         "y": 200,
         "wires": []
     }
